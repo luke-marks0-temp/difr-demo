@@ -28,6 +28,7 @@ jobs:
         with:
           repository: luke-marks0-temp/token-difr
           path: token-difr
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -35,10 +36,12 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        working-directory: token-difr
         run: |
           python -m pip install --upgrade pip
-          pip install token-difr datasets python-dotenv
+
+          pip install -e ./token-difr
+
+          pip install datasets python-dotenv
 
       - name: Run audit demonstration
         working-directory: token-difr/demos
@@ -58,12 +61,10 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
 
-          # Only add if files exist; avoids failing when glob matches nothing
           if ls data/*.json >/dev/null 2>&1; then
             git add data/*.json
           fi
 
-          # Exit cleanly if no staged changes
           if git diff --staged --quiet; then
             echo "No changes to commit."
             exit 0
