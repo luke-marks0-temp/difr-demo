@@ -1,0 +1,123 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { TrendingUp, TrendingDown } from "lucide-react"
+
+type ProviderData = {
+  exact_match_rate: number
+  avg_prob: number
+  avg_margin: number
+  avg_logit_rank: number
+  avg_gumbel_rank: number
+  infinite_margin_rate: number
+  total_tokens: number
+  n_sequences: number
+}
+
+type AuditResult = {
+  model: string
+  timestamp: string
+  providers: Record<string, ProviderData>
+}
+
+export function ProviderComparison({
+  model,
+  auditResults,
+}: {
+  model: string
+  auditResults: AuditResult[]
+}) {
+  // Get unique providers for this model
+  const providers = Array.from(new Set(auditResults.flatMap((r) => Object.keys(r.providers))))
+
+  // Calculate stats for each provider
+  const providerStats = providers.map((provider) => {
+    const providerData = auditResults.filter((r) => r.providers[provider]).map((r) => r.providers[provider])
+
+    const scores = providerData.map((d) => d.exact_match_rate)
+    const avgScore = scores.reduce((a, b) => a + b, 0) / scores.length
+    const minScore = Math.min(...scores)
+    const maxScore = Math.max(...scores)
+    const latestScore = providerData[providerData.length - 1]?.exact_match_rate || 0
+    const trend = scores.length > 1 ? latestScore - scores[scores.length - 2] : 0
+
+    return {
+      provider,
+      avgScore,
+      minScore,
+      maxScore,
+      latestScore,
+      trend,
+      dataPoints: scores.length,
+    }
+  })
+
+  // Sort by average score
+  providerStats.sort((a, b) => b.avgScore - a.avgScore)
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Provider Comparison - {model}</CardTitle>
+        <CardDescription>Detailed statistics for each provider</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {providerStats.map((stat, index) => (
+            <Card key={stat.provider} className="border-2">
+              <CardHeader className="pb-3">
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <CardTitle className="text-base font-mono">{stat.provider}</CardTitle>
+                    <div className="flex items-center gap-2 mt-1">
+                      <Badge variant={index === 0 ? "default" : "secondary"}>#{index + 1}</Badge>
+                      <Badge variant="outline" className="text-xs">
+                        {stat.dataPoints} runs
+                      </Badge>
+                    </div>
+                  </div>
+                  {stat.trend !== 0 && (
+                    <div className="flex items-center">
+                      {stat.trend > 0 ? (
+                        <TrendingUp className="w-4 h-4 text-chart-1" />
+                      ) : (
+                        <TrendingDown className="w-4 h-4 text-destructive" />
+                      )}
+                    </div>
+                  )}
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div>
+                  <p className="text-xs text-muted-foreground mb-1">Average Score</p>
+                  <p className="text-2xl font-bold text-chart-1">{(stat.avgScore * 100).toFixed(2)}%</p>
+                </div>
+                <div className="grid grid-cols-2 gap-3 pt-3 border-t">
+                  <div>
+                    <p className="text-xs text-muted-foreground mb-1">Min</p>
+                    <p className="text-sm font-semibold">{(stat.minScore * 100).toFixed(2)}%</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground mb-1">Max</p>
+                    <p className="text-sm font-semibold">{(stat.maxScore * 100).toFixed(2)}%</p>
+                  </div>
+                </div>
+                <div className="pt-2 border-t">
+                  <p className="text-xs text-muted-foreground mb-1">Latest Score</p>
+                  <div className="flex items-baseline gap-2">
+                    <p className="text-lg font-bold">{(stat.latestScore * 100).toFixed(2)}%</p>
+                    {stat.trend !== 0 && (
+                      <span className={`text-xs font-medium ${stat.trend > 0 ? "text-chart-1" : "text-destructive"}`}>
+                        {stat.trend > 0 ? "+" : ""}
+                        {(stat.trend * 100).toFixed(2)}%
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
