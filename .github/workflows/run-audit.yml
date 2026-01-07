@@ -26,7 +26,7 @@ jobs:
       - name: Checkout token-difr repository
         uses: actions/checkout@v4
         with:
-          repository: adamkarvonen/token-difr
+          repository: luke-marks0-temp/token-difr
           path: token-difr
 
       - name: Set up Python
