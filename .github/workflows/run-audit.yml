@@ -1,38 +1,45 @@
-name: Run Audit and Deploy
+name: Run Audit (Generate JSON)
 
 on:
   schedule:
-    # Runs every 12 hours at 00:00 and 12:00 UTC
-    - cron: '0 */12 * * *'
-  # Allow manual triggering for testing
+    - cron: "0 */12 * * *"
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: audit-json
+  cancel-in-progress: false
 
 jobs:
   run-audit:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout difr-demo repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      
+          fetch-depth: 0
+          persist-credentials: true
+
       - name: Checkout token-difr repository
         uses: actions/checkout@v4
         with:
           repository: adamkarvonen/token-difr
           path: token-difr
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-      
+          python-version: "3.11"
+
       - name: Install dependencies
         working-directory: token-difr
         run: |
-          pip install token-difr datasets dotenv
-      
+          python -m pip install --upgrade pip
+          pip install token-difr datasets python-dotenv
+
       - name: Run audit demonstration
         working-directory: token-difr/demos
         env:
@@ -40,49 +47,27 @@ jobs:
           FIREWORKS_API_KEY: ${{ secrets.FIREWORKS_API_KEY }}
         run: |
           python audit_demonstration.py
-      
+
       - name: Copy results to data directory
         run: |
           mkdir -p data
           cp token-difr/demos/*_audit_results_*.json data/ || echo "No new results generated"
-      
-      - name: Commit and push results
+
+      - name: Commit and push results (if changed)
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          git add data/*.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Add audit results $(date +'%Y-%m-%d %H:%M:%S')" && git push)
 
-  deploy:
-    needs: run-audit
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: main
-      
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Build Next.js app
-        run: npm run build
-      
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
-      
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          # Only add if files exist; avoids failing when glob matches nothing
+          if ls data/*.json >/dev/null 2>&1; then
+            git add data/*.json
+          fi
+
+          # Exit cleanly if no staged changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Add audit results $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          git push
