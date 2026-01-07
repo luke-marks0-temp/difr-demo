@@ -16,7 +16,15 @@ This guide will help you set up the DiFR Leaderboard on GitHub Pages at https://
 3. Under "Build and deployment":
    - Source: **GitHub Actions**
 
-### 2. Add GitHub Secrets
+### 2. Trigger Initial Deployment
+
+1. Go to the **Actions** tab in your repository
+2. Find the "Deploy to GitHub Pages" workflow
+3. Click **Run workflow** → **Run workflow**
+4. Wait 2-3 minutes for the build and deployment to complete
+5. Your site will be live at: **https://luke-marks0-temp.github.io/difr-demo/**
+
+### 3. Add GitHub Secrets
 
 1. Go to **Settings** → **Secrets and variables** → **Actions**
 2. Click **New repository secret** and add:
@@ -25,7 +33,7 @@ This guide will help you set up the DiFR Leaderboard on GitHub Pages at https://
    - Name: `FIREWORKS_API_KEY`
      - Value: Your Fireworks API key
 
-### 3. Create Data Directory
+### 4. Create Data Directory
 
 Create an empty `data/` directory in your repository:
 
@@ -37,7 +45,7 @@ git commit -m "Add data directory"
 git push
 ```
 
-### 4. Deploy the Code
+### 5. Deploy the Code
 
 1. Download this project code (use the Download ZIP option in v0)
 2. Extract and push to your repository:
@@ -56,14 +64,14 @@ git commit -m "Initial DiFR Leaderboard setup"
 git push
 ```
 
-### 5. Trigger First Run
+### 6. Trigger First Run
 
 1. Go to **Actions** tab in your repository
 2. Click on "Run Audit and Deploy" workflow
 3. Click **Run workflow** → **Run workflow**
 4. Wait for the workflow to complete (this may take several minutes)
 
-### 6. Access Your Site
+### 7. Access Your Site
 
 Once deployed, your site will be available at:
 **https://luke-marks0-temp.github.io/difr-demo/**
