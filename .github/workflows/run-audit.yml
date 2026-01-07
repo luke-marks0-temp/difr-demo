@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         working-directory: token-difr
         run: |
-          pip install -r requirements.txt
+          pip install token-difr datasets dotenv
       
       - name: Run audit demonstration
         working-directory: token-difr/demos
