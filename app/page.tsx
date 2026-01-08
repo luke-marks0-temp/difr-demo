@@ -40,11 +40,11 @@ export default function Page() {
             const [, modelName, timestamp] = match
             // Convert timestamp to ISO format
             const formattedTimestamp = `${timestamp.slice(0, 4)}-${timestamp.slice(4, 6)}-${timestamp.slice(6, 8)}T${timestamp.slice(9, 11)}:${timestamp.slice(11, 13)}:${timestamp.slice(13, 15)}`
-
+            
             results.push({
-              model: modelName.replace(/_/g, "/"),
+              model: fileData.model ?? modelName.replace(/_/g, "/"),
               timestamp: formattedTimestamp,
-              providers: fileData,
+              providers: fileData.providers ?? {},
             })
           }
         }
