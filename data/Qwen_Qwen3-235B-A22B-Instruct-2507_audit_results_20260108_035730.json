@@ -1,0 +1,73 @@
+{
+  "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "parameters": {
+    "n_prompts": 20,
+    "max_tokens": 100,
+    "seed": 42,
+    "top_k": 50,
+    "top_p": 0.95,
+    "temperature": 0.0
+  },
+  "providers": {
+    "novita/fp8": {
+      "exact_match_rate": 0.960169941582581,
+      "avg_prob": 0.8159535604504847,
+      "avg_margin": 0.012209365042485395,
+      "avg_logit_rank": 0.03345724907063197,
+      "avg_gumbel_rank": 0.03345724907063197,
+      "infinite_margin_rate": 0.0,
+      "total_tokens": 1883,
+      "n_sequences": 20
+    },
+    "siliconflow/fp8": {
+      "exact_match_rate": 0.9550080342795929,
+      "avg_prob": 0.8165628319485467,
+      "avg_margin": 0.015604077396893411,
+      "avg_logit_rank": 0.040707016604177824,
+      "avg_gumbel_rank": 0.040707016604177824,
+      "infinite_margin_rate": 0.0,
+      "total_tokens": 1867,
+      "n_sequences": 20
+    },
+    "together": {
+      "exact_match_rate": 0.9620928990923652,
+      "avg_prob": 0.8157518348844053,
+      "avg_margin": 0.008076323077949813,
+      "avg_logit_rank": 0.027762947143619862,
+      "avg_gumbel_rank": 0.027762947143619862,
+      "infinite_margin_rate": 0.0,
+      "total_tokens": 1873,
+      "n_sequences": 20
+    },
+    "fireworks/fp8": {
+      "exact_match_rate": 0.9664,
+      "avg_prob": 0.8209620396812757,
+      "avg_margin": 0.008204166666666667,
+      "avg_logit_rank": 0.028266666666666666,
+      "avg_gumbel_rank": 0.028266666666666666,
+      "infinite_margin_rate": 0.0,
+      "total_tokens": 1875,
+      "n_sequences": 20
+    },
+    "cerebras": {
+      "exact_match_rate": 0.9397201291711518,
+      "avg_prob": 0.8088144693559736,
+      "avg_margin": 0.025169873519913885,
+      "avg_logit_rank": 0.05597416576964478,
+      "avg_gumbel_rank": 0.05597416576964478,
+      "infinite_margin_rate": 0.0,
+      "total_tokens": 1858,
+      "n_sequences": 20
+    },
+    "alibaba": {
+      "exact_match_rate": 0.853763440860215,
+      "avg_prob": 0.7714097603259268,
+      "avg_margin": 0.139443414709986,
+      "avg_logit_rank": 0.26559139784946234,
+      "avg_gumbel_rank": 0.26559139784946234,
+      "infinite_margin_rate": 0.015591397849462365,
+      "total_tokens": 1860,
+      "n_sequences": 20
+    }
+  }
+}
