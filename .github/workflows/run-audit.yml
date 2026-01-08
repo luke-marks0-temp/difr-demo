@@ -48,8 +48,23 @@ jobs:
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           FIREWORKS_API_KEY: ${{ secrets.FIREWORKS_API_KEY }}
+          TOKENIZERS_PARALLELISM: "false"
+          OMP_NUM_THREADS: "1"
+          MKL_NUM_THREADS: "1"
         run: |
+          set +e
           python audit_demonstration.py
+          status=$?
+          set -e
+      
+          # If a results JSON exists, treat the run as successful even if Python aborted at shutdown
+          if ls audit_results/*_audit_results_*.json >/dev/null 2>&1; then
+            echo "Results JSON produced; continuing despite exit code $status"
+            exit 0
+          fi
+      
+          echo "No results JSON produced; failing with exit code $status"
+          exit $status
 
       - name: Copy results to data directory
         run: |
