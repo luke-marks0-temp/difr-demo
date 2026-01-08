@@ -54,7 +54,7 @@ jobs:
       - name: Copy results to data directory
         run: |
           mkdir -p data
-          cp token-difr/demos/*_audit_results_*.json data/ || echo "No new results generated"
+          cp token-difr/demos/audit_results/*_audit_results_*.json data/ || echo "No new results generated"
 
       - name: Commit and push results (if changed)
         run: |
