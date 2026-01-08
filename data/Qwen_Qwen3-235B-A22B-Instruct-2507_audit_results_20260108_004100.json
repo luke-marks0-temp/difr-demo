@@ -1,0 +1,23 @@
+{
+  "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "parameters": {
+    "n_prompts": 100,
+    "max_tokens": 200,
+    "seed": 42,
+    "top_k": 50,
+    "top_p": 0.95,
+    "temperature": 0.0
+  },
+  "providers": {
+    "alibaba": {
+      "exact_match_rate": 0.8761372905816653,
+      "avg_prob": 0.8056362077757634,
+      "avg_margin": 0.12131539004323272,
+      "avg_logit_rank": 0.19244525318441363,
+      "avg_gumbel_rank": 0.19244525318441363,
+      "infinite_margin_rate": 0.008533601054150719,
+      "total_tokens": 15937,
+      "n_sequences": 100
+    }
+  }
+}
