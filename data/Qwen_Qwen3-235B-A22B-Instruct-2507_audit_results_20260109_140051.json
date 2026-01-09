@@ -1,0 +1,66 @@
+{
+  "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "parameters": {
+    "n_prompts": 20,
+    "max_tokens": 100,
+    "seed": 42,
+    "top_k": 50,
+    "top_p": 0.95,
+    "temperature": 0.0
+  },
+  "providers": {
+    "novita/fp8": {
+      "exact_match_rate": 0.9644562334217507,
+      "avg_prob": 0.8204896524311377,
+      "avg_margin": 0.010999668435013262,
+      "avg_logit_rank": 0.029177718832891247,
+      "avg_gumbel_rank": 0.029177718832891247,
+      "infinite_margin_rate": 0.0,
+      "total_tokens": 1885,
+      "n_sequences": 20
+    },
+    "siliconflow/fp8": {
+      "exact_match_rate": 0.9432661717921527,
+      "avg_prob": 0.8130656893790748,
+      "avg_margin": 0.026990944131299734,
+      "avg_logit_rank": 0.056733828207847295,
+      "avg_gumbel_rank": 0.056733828207847295,
+      "infinite_margin_rate": 0.0005302226935312832,
+      "total_tokens": 1886,
+      "n_sequences": 20
+    },
+    "together": {
+      "exact_match_rate": 0.9635974304068522,
+      "avg_prob": 0.8120441260474397,
+      "avg_margin": 0.010108572002141328,
+      "avg_logit_rank": 0.028907922912205567,
+      "avg_gumbel_rank": 0.028907922912205567,
+      "infinite_margin_rate": 0.0,
+      "total_tokens": 1868,
+      "n_sequences": 20
+    },
+    "fireworks/fp8": {
+      "exact_match_rate": 0.9630801687763713,
+      "avg_prob": 0.8176315497520541,
+      "avg_margin": 0.010212701081223628,
+      "avg_logit_rank": 0.03270042194092827,
+      "avg_gumbel_rank": 0.03270042194092827,
+      "infinite_margin_rate": 0.0,
+      "total_tokens": 1896,
+      "n_sequences": 20
+    },
+    "cerebras": {
+      "error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'qwen/qwen3-235b-a22b-2507 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Cerebras'}}, 'user_id': 'user_2l152bn3bp13g6n2iBaxPOEhD1W'}"
+    },
+    "alibaba": {
+      "exact_match_rate": 0.8594997339010112,
+      "avg_prob": 0.7688740457419531,
+      "avg_margin": 0.1413040901850728,
+      "avg_logit_rank": 0.23948908994145823,
+      "avg_gumbel_rank": 0.23948908994145823,
+      "infinite_margin_rate": 0.013304949441192123,
+      "total_tokens": 1879,
+      "n_sequences": 20
+    }
+  }
+}
