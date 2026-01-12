@@ -77,10 +77,14 @@ export default function Page() {
   // Calculate aggregate leaderboard data
   const leaderboardData = allProviders.map((provider) => {
     const providerResults = auditResults.filter((r) => r.providers[provider])
-    const scores = providerResults.map((r) => r.providers[provider].exact_match_rate)
+  
+    // Extract scores and drop NaN / non-numeric values
+    const rawScores = providerResults.map((r) => r.providers[provider]?.exact_match_rate)
+    const scores = rawScores.filter((v): v is number => typeof v === "number" && Number.isFinite(v))
+  
     const avgScore = scores.length > 0 ? scores.reduce((a, b) => a + b, 0) / scores.length : 0
     const modelCount = new Set(providerResults.map((r) => r.model)).size
-
+  
     return {
       provider,
       avgScore,
@@ -88,7 +92,7 @@ export default function Page() {
       dataPoints: scores.length,
     }
   })
-
+  
   // Sort by average score
   leaderboardData.sort((a, b) => b.avgScore - a.avgScore)
 
