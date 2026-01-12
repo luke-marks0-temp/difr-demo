@@ -1,0 +1,56 @@
+{
+  "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "parameters": {
+    "n_prompts": 50,
+    "max_tokens": 100,
+    "seed": 42,
+    "top_k": 50,
+    "top_p": 0.95,
+    "temperature": 0.0
+  },
+  "providers": {
+    "parasail/fp8": {
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit exceeded: limit_rpm/qwen/qwen3-235b-a22b-07-25/043eb28f-fc28-4b0d-9800-b249fcfcfbf9. High demand for qwen/qwen3-235b-a22b-2507 on OpenRouter - limited to 18 requests per minute. Please retry shortly.', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '18', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1768226340000'}, 'provider_name': None}}, 'user_id': 'user_2l152bn3bp13g6n2iBaxPOEhD1W'}"
+    },
+    "siliconflow/fp8": {
+      "exact_match_rate": 0.9526315789473684,
+      "avg_prob": 0.8442046675367646,
+      "avg_margin": 0.020904139372457525,
+      "avg_logit_rank": 0.04354066985645933,
+      "avg_gumbel_rank": 0.04354066985645933,
+      "infinite_margin_rate": 0.00023923444976076556,
+      "total_tokens": 4180,
+      "n_sequences": 50
+    },
+    "novita/fp8": {
+      "exact_match_rate": 0.9654383154039826,
+      "avg_prob": 0.8505119216860937,
+      "avg_margin": 0.01095117947470817,
+      "avg_logit_rank": 0.030212863355458915,
+      "avg_gumbel_rank": 0.030212863355458915,
+      "infinite_margin_rate": 0.0,
+      "total_tokens": 4369,
+      "n_sequences": 50
+    },
+    "together": {
+      "exact_match_rate": 0.9616532721010332,
+      "avg_prob": 0.8500032276291524,
+      "avg_margin": 0.011605707395498393,
+      "avg_logit_rank": 0.030998851894374284,
+      "avg_gumbel_rank": 0.030998851894374284,
+      "infinite_margin_rate": 0.0002296211251435132,
+      "total_tokens": 4355,
+      "n_sequences": 50
+    },
+    "fireworks/fp8": {
+      "exact_match_rate": 0.9698354661791591,
+      "avg_prob": 0.8525033914867168,
+      "avg_margin": 0.01219989002513711,
+      "avg_logit_rank": 0.027650822669104205,
+      "avg_gumbel_rank": 0.027650822669104205,
+      "infinite_margin_rate": 0.0,
+      "total_tokens": 4376,
+      "n_sequences": 50
+    }
+  }
+}
