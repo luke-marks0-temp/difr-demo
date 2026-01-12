@@ -31,14 +31,36 @@ export function ProviderComparison({
 
   // Calculate stats for each provider
   const providerStats = providers.map((provider) => {
-    const providerData = auditResults.filter((r) => r.providers[provider]).map((r) => r.providers[provider])
+    const providerData = auditResults
+      .filter((r) => r.providers[provider])
+      .map((r) => r.providers[provider])
 
-    const scores = providerData.map((d) => d.exact_match_rate)
-    const avgScore = scores.reduce((a, b) => a + b, 0) / scores.length
-    const minScore = Math.min(...scores)
-    const maxScore = Math.max(...scores)
-    const latestScore = providerData[providerData.length - 1]?.exact_match_rate || 0
-    const trend = scores.length > 1 ? latestScore - scores[scores.length - 2] : 0
+    // Extract scores and keep only finite numbers
+    const rawScores = providerData.map((d) => d.exact_match_rate)
+    const scores = rawScores.filter((v): v is number => typeof v === "number" && Number.isFinite(v))
+
+    const avgScore = scores.length > 0 ? scores.reduce((a, b) => a + b, 0) / scores.length : 0
+    const minScore = scores.length > 0 ? Math.min(...scores) : 0
+    const maxScore = scores.length > 0 ? Math.max(...scores) : 0
+
+    // Latest valid score (walk backward until we find a finite number)
+    const latestScore =
+      (() => {
+        for (let i = rawScores.length - 1; i >= 0; i--) {
+          const v = rawScores[i]
+          if (typeof v === "number" && Number.isFinite(v)) return v
+        }
+        return 0
+      })()
+
+    // Trend based on last two valid scores
+    const trend =
+      (() => {
+        if (scores.length < 2) return 0
+        const last = scores[scores.length - 1]
+        const prev = scores[scores.length - 2]
+        return last - prev
+      })()
 
     return {
       provider,
@@ -47,7 +69,7 @@ export function ProviderComparison({
       maxScore,
       latestScore,
       trend,
-      dataPoints: scores.length,
+      dataPoints: scores.length, // valid runs only
     }
   })
 
