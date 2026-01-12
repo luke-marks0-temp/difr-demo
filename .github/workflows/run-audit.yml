@@ -41,7 +41,7 @@ jobs:
 
           pip install -e ./token-difr
 
-          pip install datasets python-dotenv
+          pip install datasets python-dotenv tiktoken
 
       - name: Run audit demonstration
         working-directory: token-difr/demos
