@@ -53,7 +53,7 @@ jobs:
           MKL_NUM_THREADS: "1"
         run: |
           set +e
-          python audit_demonstration.py
+          python audit_demonstration.py Qwen/Qwen3-235B-A22B-Instruct-2507 moonshotai/Kimi-K2-Instruct-0905
           status=$?
           set -e
       

@@ -91,7 +91,7 @@ export default function Page() {
       modelCount,
       dataPoints: scores.length,
     }
-  })
+  }).filter((entry) => entry.dataPoints > 0)
   
   // Sort by average score
   leaderboardData.sort((a, b) => b.avgScore - a.avgScore)
@@ -106,6 +106,10 @@ export default function Page() {
         }))
         .sort((a, b) => a.timestamp.localeCompare(b.timestamp))
     : []
+
+  const timelineProviders = allProviders.filter((provider) =>
+    timeSeriesData.some((point) => typeof point[provider] === "number" && Number.isFinite(point[provider]))
+  )
 
   if (isLoading) {
     return (
@@ -163,7 +167,7 @@ export default function Page() {
           </CardHeader>
           <CardContent>
             {timeSeriesData.length > 0 ? (
-              <TimeSeriesChart data={timeSeriesData} providers={allProviders} />
+              <TimeSeriesChart data={timeSeriesData} providers={timelineProviders} />
             ) : (
               <div className="flex items-center justify-center py-12 text-muted-foreground">
                 Select a model to view timeline

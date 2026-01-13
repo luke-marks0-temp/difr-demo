@@ -16,6 +16,8 @@ export function LeaderboardTable({ data }: { data: LeaderboardData[] }) {
     return "text-muted-foreground"
   }
 
+  const rows = data.filter((item) => item.dataPoints > 0)
+
   return (
     <div className="rounded-lg border border-border overflow-hidden">
       <Table>
@@ -29,7 +31,7 @@ export function LeaderboardTable({ data }: { data: LeaderboardData[] }) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((item, index) => (
+          {rows.map((item, index) => (
             <TableRow key={item.provider} className="hover:bg-muted/30">
               <TableCell className="font-medium">
                 <span>#{index + 1}</span>
