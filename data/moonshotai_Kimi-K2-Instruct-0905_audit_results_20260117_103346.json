@@ -1,0 +1,81 @@
+{
+  "model": "moonshotai/Kimi-K2-Instruct-0905",
+  "parameters": {
+    "n_prompts": 100,
+    "max_tokens": 200,
+    "seed": 42,
+    "top_k": 50,
+    "top_p": 0.95,
+    "temperature": 0.0
+  },
+  "providers": {
+    "atlascloud/fp8": {
+      "error": "Error code: 404 - {'error': {'message': 'No allowed providers are available for the selected model.', 'code': 404}}"
+    },
+    "baseten/fp4": {
+      "error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'moonshotai/kimi-k2-0905 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'BaseTen', 'is_byok': False}}, 'user_id': 'user_2l152bn3bp13g6n2iBaxPOEhD1W'}"
+    },
+    "chutes/fp8": {
+      "error": "Error code: 404 - {'error': {'message': 'No endpoints found matching your data policy (Paid model training). Configure: https://openrouter.ai/settings/privacy', 'code': 404}}"
+    },
+    "deepinfra/fp4": {
+      "exact_match_rate": 0.8452066842568162,
+      "avg_prob": 0.7904761821076239,
+      "avg_margin": 0.22286271908290267,
+      "avg_logit_rank": 0.26852039780799675,
+      "avg_gumbel_rank": 0.26852039780799675,
+      "infinite_margin_rate": 0.013801501928151005,
+      "total_tokens": 14781,
+      "n_sequences": 100
+    },
+    "fireworks/fp8": {
+      "error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'moonshotai/kimi-k2-0905 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Fireworks', 'is_byok': False}}, 'user_id': 'user_2l152bn3bp13g6n2iBaxPOEhD1W'}"
+    },
+    "groq": {
+      "exact_match_rate": 0.7879839423011499,
+      "avg_prob": 0.7396475571680201,
+      "avg_margin": 0.3186170928541222,
+      "avg_logit_rank": 0.45410628019323673,
+      "avg_gumbel_rank": 0.45410628019323673,
+      "infinite_margin_rate": 0.03667415118731714,
+      "total_tokens": 14697,
+      "n_sequences": 100
+    },
+    "moonshotai": {
+      "error": "Error code: 429 - {'error': {'message': 'Rate limit exceeded: limit_rpm/moonshotai/kimi-k2-0905/216b6cc1-a975-4173-bf76-4a4359c6bba5. High demand for moonshotai/kimi-k2-0905 on OpenRouter - limited to 50 requests per minute. Please retry shortly.', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '50', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset': '1768646400000'}, 'provider_name': None}}, 'user_id': 'user_2l152bn3bp13g6n2iBaxPOEhD1W'}"
+    },
+    "novita/fp8": {
+      "exact_match_rate": 0.8937804292669547,
+      "avg_prob": 0.8314590463391079,
+      "avg_margin": 0.11370797798363562,
+      "avg_logit_rank": 0.14962627717204965,
+      "avg_gumbel_rank": 0.14962627717204965,
+      "infinite_margin_rate": 0.003360076801755469,
+      "total_tokens": 14583,
+      "n_sequences": 100
+    },
+    "parasail/fp8": {
+      "error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'moonshotai/kimi-k2-0905 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Parasail', 'is_byok': False}}, 'user_id': 'user_2l152bn3bp13g6n2iBaxPOEhD1W'}"
+    },
+    "siliconflow/fp8": {
+      "exact_match_rate": 0.8888368670991907,
+      "avg_prob": 0.8245835902010695,
+      "avg_margin": 0.12246253867403858,
+      "avg_logit_rank": 0.15905290616012308,
+      "avg_gumbel_rank": 0.15905290616012308,
+      "infinite_margin_rate": 0.0037455688582703497,
+      "total_tokens": 14951,
+      "n_sequences": 100
+    },
+    "together": {
+      "exact_match_rate": 0.8929614873837981,
+      "avg_prob": 0.8281485623073861,
+      "avg_margin": 0.12069912761849245,
+      "avg_logit_rank": 0.15252324037184595,
+      "avg_gumbel_rank": 0.15252324037184595,
+      "infinite_margin_rate": 0.0041832669322709164,
+      "total_tokens": 15060,
+      "n_sequences": 100
+    }
+  }
+}
