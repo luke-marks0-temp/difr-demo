@@ -1,0 +1,88 @@
+{
+  "model": "moonshotai/Kimi-K2-Instruct-0905",
+  "parameters": {
+    "n_prompts": 100,
+    "max_tokens": 200,
+    "seed": 42,
+    "top_k": 50,
+    "top_p": 0.95,
+    "temperature": 0.0
+  },
+  "providers": {
+    "atlascloud/fp8": {
+      "error": "Error code: 404 - {'error': {'message': 'No allowed providers are available for the selected model.', 'code': 404}}"
+    },
+    "baseten/fp4": {
+      "error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'moonshotai/kimi-k2-0905 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'BaseTen', 'is_byok': False}}, 'user_id': 'user_2l152bn3bp13g6n2iBaxPOEhD1W'}"
+    },
+    "chutes/fp8": {
+      "error": "Error code: 404 - {'error': {'message': 'No endpoints found matching your data policy (Paid model training). Configure: https://openrouter.ai/settings/privacy', 'code': 404}}"
+    },
+    "deepinfra/fp4": {
+      "exact_match_rate": 0.8417908397994919,
+      "avg_prob": 0.7875860288647233,
+      "avg_margin": 0.22890702422938625,
+      "avg_logit_rank": 0.2707546522007828,
+      "avg_gumbel_rank": 0.2707546522007828,
+      "infinite_margin_rate": 0.012772093662020189,
+      "total_tokens": 14563,
+      "n_sequences": 100
+    },
+    "fireworks/fp8": {
+      "error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'moonshotai/kimi-k2-0905 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Fireworks', 'is_byok': False}}, 'user_id': 'user_2l152bn3bp13g6n2iBaxPOEhD1W'}"
+    },
+    "groq": {
+      "exact_match_rate": 0.77571737953438,
+      "avg_prob": 0.7291404977527921,
+      "avg_margin": 0.3443629185860617,
+      "avg_logit_rank": 0.4709664320519762,
+      "avg_gumbel_rank": 0.4709664320519762,
+      "infinite_margin_rate": 0.03559826746074716,
+      "total_tokens": 14776,
+      "n_sequences": 100
+    },
+    "moonshotai": {
+      "exact_match_rate": 0.883554716472254,
+      "avg_prob": 0.8227413916872421,
+      "avg_margin": 0.14279140318335154,
+      "avg_logit_rank": 0.17315083271525858,
+      "avg_gumbel_rank": 0.17315083271525858,
+      "infinite_margin_rate": 0.005056975254534421,
+      "total_tokens": 14831,
+      "n_sequences": 100
+    },
+    "novita/fp8": {
+      "exact_match_rate": 0.8962918500733627,
+      "avg_prob": 0.8323636458553197,
+      "avg_margin": 0.11500338456852525,
+      "avg_logit_rank": 0.14325730292116848,
+      "avg_gumbel_rank": 0.14325730292116848,
+      "infinite_margin_rate": 0.00286781379218354,
+      "total_tokens": 14994,
+      "n_sequences": 100
+    },
+    "parasail/fp8": {
+      "error": "Error code: 429 - {'error': {'message': 'Provider returned error', 'code': 429, 'metadata': {'raw': 'moonshotai/kimi-k2-0905 is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations', 'provider_name': 'Parasail', 'is_byok': False}}, 'user_id': 'user_2l152bn3bp13g6n2iBaxPOEhD1W'}"
+    },
+    "siliconflow/fp8": {
+      "exact_match_rate": 0.8956861161585571,
+      "avg_prob": 0.834376412738407,
+      "avg_margin": 0.11414970975317157,
+      "avg_logit_rank": 0.14502994817955447,
+      "avg_gumbel_rank": 0.14502994817955447,
+      "infinite_margin_rate": 0.0030957668752944344,
+      "total_tokens": 14859,
+      "n_sequences": 100
+    },
+    "together": {
+      "exact_match_rate": 0.8919997294921215,
+      "avg_prob": 0.8300249205002931,
+      "avg_margin": 0.11590078978870437,
+      "avg_logit_rank": 0.15479813349563806,
+      "avg_gumbel_rank": 0.15479813349563806,
+      "infinite_margin_rate": 0.0041928721174004195,
+      "total_tokens": 14787,
+      "n_sequences": 100
+    }
+  }
+}
