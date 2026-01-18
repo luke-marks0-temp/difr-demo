@@ -129,9 +129,12 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border/40 bg-card/50 backdrop-blur-sm sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-4">
-          <h1 className="text-2xl font-bold tracking-tight">DiFR Leaderboard</h1>
-          <p className="text-sm text-muted-foreground mt-0.5">Inference reliability metrics</p>
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-6">
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">DiFR Leaderboard</h1>
+            <p className="text-sm text-muted-foreground mt-0.5">Inference reliability metrics</p>
+          </div>
+          <img src="/icon_Light_Primary.svg" alt="Company logo" className="h-8 w-auto" />
         </div>
       </header>
 
