@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { LeaderboardTable } from "@/components/leaderboard-table"
 import { TimeSeriesChart } from "@/components/time-series-chart"
@@ -13,6 +14,7 @@ export default function Page() {
   const [auditResults, setAuditResults] = useState<AuditResult[]>(sampleAuditResults)
   const [isLoading, setIsLoading] = useState(true)
   const [selectedModel, setSelectedModel] = useState<string>("")
+  const [showAllProviders, setShowAllProviders] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -96,6 +98,8 @@ export default function Page() {
   // Sort by average score
   leaderboardData.sort((a, b) => b.avgScore - a.avgScore)
 
+  const leaderboardRows = showAllProviders ? leaderboardData : leaderboardData.slice(0, 10)
+
   // Get time series data for selected model
   const timeSeriesData = selectedModel
     ? auditResults
@@ -139,7 +143,16 @@ export default function Page() {
             <CardDescription>Average exact match rate across all models and timestamps</CardDescription>
           </CardHeader>
           <CardContent>
-            <LeaderboardTable data={leaderboardData} />
+            <div className="space-y-3">
+              <LeaderboardTable data={leaderboardRows} />
+              {leaderboardData.length > 10 && (
+                <div className="flex justify-center">
+                  <Button variant="outline" onClick={() => setShowAllProviders((prev) => !prev)}>
+                    {showAllProviders ? "Show top 10 providers" : "Show all providers"}
+                  </Button>
+                </div>
+              )}
+            </div>
           </CardContent>
         </Card>
 
