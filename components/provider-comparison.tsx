@@ -71,7 +71,7 @@ export function ProviderComparison({
       trend,
       dataPoints: scores.length, // valid runs only
     }
-  })
+  }).filter((stat) => stat.dataPoints > 0)
 
   // Sort by average score
   providerStats.sort((a, b) => b.avgScore - a.avgScore)
