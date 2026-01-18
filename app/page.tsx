@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -134,7 +135,7 @@ export default function Page() {
             <h1 className="text-2xl font-bold tracking-tight">DiFR Leaderboard</h1>
             <p className="text-sm text-muted-foreground mt-0.5">Inference reliability metrics</p>
           </div>
-          <img src="/icon_Light_Primary.svg" alt="Company logo" className="h-8 w-auto" />
+          <Image src="/icon_Light_Primary.svg" alt="Company logo" className="h-8 w-auto" width={120} height={32} />
         </div>
       </header>
 
