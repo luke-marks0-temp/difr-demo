@@ -4,14 +4,11 @@ import { useMemo } from "react"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
 
 const CHART_COLORS = [
-  "#10b981", // emerald
-  "#3b82f6", // blue
-  "#8b5cf6", // violet
-  "#f59e0b", // amber
-  "#ef4444", // red
-  "#06b6d4", // cyan
-  "#ec4899", // pink
-  "#84cc16", // lime
+  "var(--chart-1)",
+  "var(--chart-2)",
+  "var(--chart-3)",
+  "var(--chart-4)",
+  "var(--chart-5)",
 ]
 
 type TimeSeriesData = {
@@ -43,24 +40,24 @@ export function TimeSeriesChart({
   return (
     <ResponsiveContainer width="100%" height={400}>
       <LineChart data={formattedData} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
+        <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" opacity={0.3} />
         <XAxis
           dataKey="time"
-          stroke="hsl(var(--muted-foreground))"
-          tick={{ fill: "hsl(var(--muted-foreground))" }}
-          tickLine={{ stroke: "hsl(var(--border))" }}
+          stroke="var(--muted-foreground)"
+          tick={{ fill: "var(--muted-foreground)" }}
+          tickLine={{ stroke: "var(--border)" }}
         />
         <YAxis
           domain={[0.5, 1]}
           tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
-          stroke="hsl(var(--muted-foreground))"
-          tick={{ fill: "hsl(var(--muted-foreground))" }}
-          tickLine={{ stroke: "hsl(var(--border))" }}
+          stroke="var(--muted-foreground)"
+          tick={{ fill: "var(--muted-foreground)" }}
+          tickLine={{ stroke: "var(--border)" }}
         />
         <Tooltip
           contentStyle={{
-            backgroundColor: "hsl(var(--popover))",
-            border: "1px solid hsl(var(--border))",
+            backgroundColor: "var(--popover)",
+            border: "1px solid var(--border)",
             borderRadius: "var(--radius)",
           }}
           formatter={(value: number) => `${(value * 100).toFixed(2)}%`}

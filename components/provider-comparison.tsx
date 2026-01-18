@@ -100,7 +100,7 @@ export function ProviderComparison({
                   {stat.trend !== 0 && (
                     <div className="flex items-center">
                       {stat.trend > 0 ? (
-                        <TrendingUp className="w-4 h-4 text-chart-1" />
+                        <TrendingUp className="w-4 h-4 text-[var(--chart-3)]" />
                       ) : (
                         <TrendingDown className="w-4 h-4 text-destructive" />
                       )}
@@ -128,7 +128,9 @@ export function ProviderComparison({
                   <div className="flex items-baseline gap-2">
                     <p className="text-lg font-bold">{(stat.latestScore * 100).toFixed(2)}%</p>
                     {stat.trend !== 0 && (
-                      <span className={`text-xs font-medium ${stat.trend > 0 ? "text-chart-1" : "text-destructive"}`}>
+                      <span
+                        className={`text-xs font-medium ${stat.trend > 0 ? "text-[var(--chart-3)]" : "text-destructive"}`}
+                      >
                         {stat.trend > 0 ? "+" : ""}
                         {(stat.trend * 100).toFixed(2)}%
                       </span>

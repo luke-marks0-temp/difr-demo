@@ -135,7 +135,13 @@ export default function Page() {
             <h1 className="text-2xl font-bold tracking-tight">DiFR Leaderboard</h1>
             <p className="text-sm text-muted-foreground mt-0.5">Inference reliability metrics</p>
           </div>
-          <Image src="/icon_Light_Primary.svg" alt="Company logo" className="h-8 w-auto" width={120} height={32} />
+          <Image
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/icon_Light_Primary.svg`}
+            alt="Company logo"
+            className="h-8 w-auto"
+            width={120}
+            height={32}
+          />
         </div>
       </header>
 

@@ -1,12 +1,16 @@
 /** @type {import('next').NextConfig} */
+const basePath = '/difr-demo'
 const nextConfig = {
   output: 'export',
-  basePath: '/difr-demo',
+  basePath,
   typescript: {
     ignoreBuildErrors: true,
   },
   images: {
     unoptimized: true,
+  },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
   },
 }
 
