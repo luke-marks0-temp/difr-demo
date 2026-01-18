@@ -136,11 +136,24 @@ export default function Page() {
       </header>
 
       <div className="container mx-auto px-4 py-8 space-y-6">
+        <section className="rounded-lg border border-border/60 bg-card/70 p-5">
+          <h2 className="text-lg font-semibold">How to read this leaderboard</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            We audit providers by comparing their outputs against trusted reference implementations of models. 
+	    The exact match rate is the share of tokens that match the reference; higher means the
+            provider is more likely running the claimed model. We compare tens of thousands of tokens per run. 
+	    This means that low exact match rates imply that a model is behaving differently than expected.
+          </p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Match rates above 95% are typical; sustained drops can indicate model substitution, heavy quantization, or
+	    that we are incorrectly tokenizing the provider's response.
+          </p>
+        </section>
         {/* Overall Leaderboard */}
         <Card>
           <CardHeader>
             <CardTitle>Overall Provider Rankings</CardTitle>
-            <CardDescription>Average exact match rate across all models and timestamps</CardDescription>
+            <CardDescription>The rate that a token sampled from a provider matches our reference implementation averaged across all models and timesteps</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
