@@ -26,12 +26,14 @@ export function ProviderComparison({
   model: string
   auditResults: AuditResult[]
 }) {
+  const sortedResults = [...auditResults].sort((a, b) => a.timestamp.localeCompare(b.timestamp))
+
   // Get unique providers for this model
-  const providers = Array.from(new Set(auditResults.flatMap((r) => Object.keys(r.providers))))
+  const providers = Array.from(new Set(sortedResults.flatMap((r) => Object.keys(r.providers))))
 
   // Calculate stats for each provider
   const providerStats = providers.map((provider) => {
-    const providerData = auditResults
+    const providerData = sortedResults
       .filter((r) => r.providers[provider])
       .map((r) => r.providers[provider])
 
@@ -100,7 +102,7 @@ export function ProviderComparison({
                   {stat.trend !== 0 && (
                     <div className="flex items-center">
                       {stat.trend > 0 ? (
-                        <TrendingUp className="w-4 h-4 text-[var(--chart-3)]" />
+                        <TrendingUp className="w-4 h-4 text-chart-3" />
                       ) : (
                         <TrendingDown className="w-4 h-4 text-destructive" />
                       )}
@@ -129,7 +131,7 @@ export function ProviderComparison({
                     <p className="text-lg font-bold">{(stat.latestScore * 100).toFixed(2)}%</p>
                     {stat.trend !== 0 && (
                       <span
-                        className={`text-xs font-medium ${stat.trend > 0 ? "text-[var(--chart-3)]" : "text-destructive"}`}
+                        className={`text-xs font-medium ${stat.trend > 0 ? "text-chart-3" : "text-destructive"}`}
                       >
                         {stat.trend > 0 ? "+" : ""}
                         {(stat.trend * 100).toFixed(2)}%

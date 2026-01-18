@@ -3,6 +3,7 @@ const basePath = '/difr-demo'
 const nextConfig = {
   output: 'export',
   basePath,
+  assetPrefix: basePath,
   typescript: {
     ignoreBuildErrors: true,
   },
