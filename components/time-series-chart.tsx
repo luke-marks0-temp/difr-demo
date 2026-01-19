@@ -1,7 +1,17 @@
 "use client"
 
 import { useMemo } from "react"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Brush,
+} from "recharts"
 
 const CHART_COLORS = [
   "var(--chart-1)",
@@ -63,6 +73,13 @@ export function TimeSeriesChart({
           formatter={(value: number) => `${(value * 100).toFixed(2)}%`}
         />
         <Legend wrapperStyle={{ paddingTop: "20px" }} iconType="line" />
+        <Brush
+          dataKey="time"
+          height={30}
+          stroke="var(--primary)"
+          travellerWidth={12}
+          tickFormatter={() => ""}
+        />
         {providers.map((provider, index) => (
           <Line
             key={provider}
