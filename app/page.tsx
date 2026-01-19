@@ -155,7 +155,7 @@ export default function Page() {
 	    This means that low exact match rates imply that a model is behaving differently than expected.
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
-            Match rates above 95% are typical; sustained drops can indicate model substitution, heavy quantization, or
+            Exact match rates above 95% are typical; sustained drops can indicate model substitution, heavy quantization, or
 	    that we are incorrectly tokenizing the provider's response.
           </p>
         </section>
@@ -185,7 +185,7 @@ export default function Page() {
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <CardTitle>Provider Performance Over Time</CardTitle>
-                <CardDescription>Exact match rate timeline for selected model</CardDescription>
+                <CardDescription>Exact match rate over time for selected model</CardDescription>
               </div>
               <Select value={selectedModel} onValueChange={setSelectedModel}>
                 <SelectTrigger className="w-full sm:w-[320px]">
